@@ -220,6 +220,8 @@ class ComponentController extends \Cx\Core\Core\Model\Entity\SystemComponentCont
             $target = $themeRepo->findById($entityId);
             $this->cache[$entityName][$entityId] = $target;
             return $target;
+        } else if ($componentName == 'Shop' && $entityName == 'Shopnavbar') {
+            return new \Cx\Modules\Shop\Model\Entity\Shopnavbar();
         }
         $em = $this->cx->getDb()->getEntityManager();
         $component = $this->getComponent($componentName);

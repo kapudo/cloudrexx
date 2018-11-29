@@ -220,8 +220,8 @@ class EsiWidget extends Widget {
         if ($this->getType() != static::TYPE_BLOCK) {
             return $esiContent;
         }
-        $template->replaceBlock($this->getName(), $esiContent);
-        $template->touchBlock($this->getName());
+        $template->replaceBlock($this->name, $esiContent);
+        $template->touchBlock($this->name);
     }
 
     /**
@@ -292,7 +292,7 @@ class EsiWidget extends Widget {
     protected function getEsiParams($targetComponent, $targetEntity, $targetId) {
         $esiParams = array();
         $baseParams = array(
-            'name' => $this->getName(),
+            'name' => $this->name,
             'targetComponent' => $targetComponent,
             'targetEntity' => $targetEntity,
             'targetId' => $targetId,

@@ -195,11 +195,11 @@ abstract class Widget extends \Cx\Model\Base\EntityBase {
                 );
                 break;
             case static::TYPE_BLOCK:
-                if (!$template->blockExists($this->getName())) {
+                if (!$template->blockExists($this->name)) {
                     return;
                 }
                 // get widget template
-                $widgetHtml = $template->getUnparsedBlock($this->getName());
+                $widgetHtml = $template->getUnparsedBlock($this->name);
                 \LinkGenerator::parseTemplate($widgetHtml);
                 $widgetTemplate = new \Cx\Core_Modules\Widget\Model\Entity\Sigma();
                 $widgetTemplate->setTemplate($widgetHtml);
@@ -220,7 +220,7 @@ abstract class Widget extends \Cx\Model\Base\EntityBase {
                 // parse blocktemplate in main template
                 $parsedContent = $widgetTemplate->get();
                 $template->replaceBlock(
-                    $this->getName(),
+                    $this->name,
                     $parsedContent,
                     false,
                     true

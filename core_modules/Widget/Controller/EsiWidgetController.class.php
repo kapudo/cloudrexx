@@ -110,7 +110,11 @@ abstract class EsiWidgetController extends \Cx\Core\Core\Model\Entity\Controller
         ) {
             throw new \InvalidArgumentException('Param "name" not set');
         }
-        $widget = $this->getComponent('Widget')->getWidget($params['get']['name']);
+        try {
+            $widget = $this->getComponent('Widget')->getWidget($params['get']['name']);
+        } catch (\Exception $e) {
+            $widget = $this->getComponent('Widget')->getWidget(strtolower($params['get']['name']));
+        }
         $requiredParamsForWidgetsWithContent = array(
             'theme',
             'page',
@@ -180,7 +184,7 @@ abstract class EsiWidgetController extends \Cx\Core\Core\Model\Entity\Controller
             $params['get']['targetComponent'],
             $params['get']['targetEntity'],
             $params['get']['targetId'],
-            array($params['get']['name'])
+            array($widget->getName())
         );
         $params = $this->objectifyParams($params);
         $this->parseWidget(
@@ -194,7 +198,7 @@ abstract class EsiWidgetController extends \Cx\Core\Core\Model\Entity\Controller
             $params['get']['targetComponent'],
             $params['get']['targetEntity'],
             $params['get']['targetId'],
-            array($params['get']['name'])
+            array($widget->getName())
         );
         $_GET = $backupGetParams;
         $_REQUEST = $backupRequestParams;

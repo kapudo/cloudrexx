@@ -283,16 +283,10 @@ class ComponentController extends \Cx\Core\Core\Model\Entity\SystemComponentCont
         $widgetController = $this->getComponent('Widget');
         foreach ($widgetNames as $widgetName) {
             if ($widgetName === 'shopJsCart') {
-                $widget = new \Cx\Core_Modules\Widget\Model\Entity\SingleParseEsiWidget(
+                $widget = new \Cx\Core_Modules\Widget\Model\Entity\EsiWidget(
                     $this,
                     $widgetName,
                     $widgetType
-                );
-                $widget->setEsiVariable(
-                    \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_USER|
-                    \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_THEME|
-                    \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_CHANNEL|
-                    \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_LOCALE
                 );
             } else {
                 $widget = new \Cx\Core_Modules\Widget\Model\Entity\EsiWidget(
@@ -305,12 +299,12 @@ class ComponentController extends \Cx\Core\Core\Model\Entity\SystemComponentCont
                 );
                 if ($widgetType == \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::TYPE_PLACEHOLDER) {
                     $widget->setEsiVariable(
-                        \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_THEME|
+                        \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_THEME |
                         \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_CHANNEL
                     );
                 }
                 $widget->setEsiVariable(
-                    \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_CURRENCY|
+                    \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_CURRENCY |
                     \Cx\Core_Modules\Widget\Model\Entity\EsiWidget::ESI_VAR_ID_USER
                 );
             }
